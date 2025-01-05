@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 540px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+    background-color: #e0e0e0;
+    height: 150px;
+    background-image: url(Captura\ de\ tela\ 2025-01-04\ 212442.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-content h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.card-content p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.card-content a {
+    font-size: 14px;
+    color: #6a5acd;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card-content a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 541px) {
+    .card {
+        flex-direction: row;
+        max-width: 800px;
+    }
+
+    .card-image {
+        width: 40%;
+        height: auto;
+    }
+
+    .card-content {
+        width: 60%;
+        padding: 24px;
+    }
+
+    .card-content h2 {
+        font-size: 20px;
+    }
+
+    .card-content p {
+        font-size: 16px;
+    }
+
+    .card-content a {
+        font-size: 16px;
+    }
+}
