@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -26,31 +17,40 @@
             min-height: 100vh;
             color: rgb(232, 235, 200);
         }
-        
+
         .link-container {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 15px;
             width: 80%;
             max-width: 500px;
             margin: 10px 0;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         a {
             color: rgb(232, 235, 200);
             text-decoration: none;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: bold;
             display: block;
-            padding: 10px;
-            transition: background-color 0.3s;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
         }
-        
+
         a:hover {
             background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
+            transform: scale(1.03);
         }
-        
+
+        a:active {
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: scale(0.97);
+        }
+
         h1 {
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -75,7 +75,5 @@
     <div class="link-container">
         <a href="https://leticianascimento15.github.io/questao4jsArrays.html">Questão 4</a>
     </div>
-</body>
-</html>
 </body>
 </html>
