@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 4 - Saque Mínimo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input, button {
+            padding: 8px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Saque Mínimo de Cédulas</h1>
+    
+    <div class="input-group">
+        <label for="amountInput">Valor para saque (R$):</label><br>
+        <input type="number" id="amountInput" value="1280" min="2">
+        <button onclick="calculateWithdrawal()">Calcular</button>
+    </div>
+    
+    <div id="resultContainer">
+        <table id="resultTable">
+            <thead>
+                <tr>
+                    <th>Cédula</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody">
+            </tbody>
+        </table>
+        <p id="errorMessage" class="error"></p>
+    </div>
+
+    <script>
+        function calculateWithdrawal() {
+            const amount = parseInt(document.getElementById('amountInput').value);
+            const bills = [100, 50, 20, 10, 5, 2];
+            const result = {};
+            let remaining = amount;
+            
+            // Resetar resultados anteriores
+            document.getElementById('resultBody').innerHTML = '';
+            document.getElementById('errorMessage').textContent = '';
+            
+            // Calcular quantidade de cada cédula
+            for (const bill of bills) {
+                if (remaining >= bill) {
+                    const count = Math.floor(remaining / bill);
+                    result[bill] = count;
+                    remaining -= count * bill;
+                }
+            }
+            
+            // Exibir resultados na tabela
+            const tbody = document.getElementById('resultBody');
+            for (const bill in result) {
+                const row = document.createElement('tr');
+                
+                const billCell = document.createElement('td');
+                billCell.textContent = `R$ ${bill}`;
+                
+                const countCell = document.createElement('td');
+                countCell.textContent = result[bill];
+                
+                row.appendChild(billCell);
+                row.appendChild(countCell);
+                tbody.appendChild(row);
+            }
+            
+            // Mostrar mensagem se houver valor restante
+            if (remaining > 0) {
+                document.getElementById('errorMessage').textContent = 
+                    `Não foi possível sacar R$ ${remaining} (não há cédulas disponíveis para este valor)`;
+            }
+        }
+
+        // Calcular ao carregar a página
+        window.onload = calculateWithdrawal;
+    </script>
+</body>
+</html>
