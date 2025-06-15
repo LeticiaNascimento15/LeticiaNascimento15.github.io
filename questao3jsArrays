@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 3 - Números Romanos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input, button {
+            padding: 8px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Conversor para Números Romanos</h1>
+    
+    <div class="input-group">
+        <label for="numberInput">Insira um número decimal (1-3999):</label><br>
+        <input type="number" id="numberInput" value="27" min="1" max="3999">
+        <button onclick="convertToRoman()">Converter</button>
+    </div>
+    
+    <div class="result">
+        <p><strong>Número romano:</strong> <span id="romanResult"></span></p>
+    </div>
+
+    <script>
+        function toRoman(num) {
+            const romanNumerals = [
+                { value: 1000, symbol: 'M' },
+                { value: 900, symbol: 'CM' },
+                { value: 500, symbol: 'D' },
+                { value: 400, symbol: 'CD' },
+                { value: 100, symbol: 'C' },
+                { value: 90, symbol: 'XC' },
+                { value: 50, symbol: 'L' },
+                { value: 40, symbol: 'XL' },
+                { value: 10, symbol: 'X' },
+                { value: 9, symbol: 'IX' },
+                { value: 5, symbol: 'V' },
+                { value: 4, symbol: 'IV' },
+                { value: 1, symbol: 'I' }
+            ];
+            
+            let result = '';
+            let remaining = num;
+            
+            for (const numeral of romanNumerals) {
+                while (remaining >= numeral.value) {
+                    result += numeral.symbol;
+                    remaining -= numeral.value;
+                }
+            }
+            
+            return result;
+        }
+
+        function convertToRoman() {
+            const num = parseInt(document.getElementById('numberInput').value);
+            if (num < 1 || num > 3999) {
+                alert('Por favor, insira um número entre 1 e 3999');
+                return;
+            }
+            document.getElementById('romanResult').textContent = toRoman(num);
+        }
+
+        // Converter ao carregar a página
+        window.onload = convertToRoman;
+    </script>
+</body>
+</html>
