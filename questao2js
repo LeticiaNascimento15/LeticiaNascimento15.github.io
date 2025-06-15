@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 2 - Números Primos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input, button {
+            padding: 8px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Números Primos</h1>
+    
+    <div class="input-group">
+        <label for="input1">Valor 1 (quantidade ou início do intervalo):</label><br>
+        <input type="number" id="input1" value="4" min="1">
+    </div>
+    
+    <div class="input-group">
+        <label for="input2">Valor 2 (opcional - fim do intervalo):</label><br>
+        <input type="number" id="input2" min="1">
+    </div>
+    
+    <button onclick="calculatePrimes()">Calcular Primos</button>
+    
+    <div class="result">
+        <p><strong>Números primos:</strong> <span id="primesResult"></span></p>
+    </div>
+
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num === 2) return true;
+            if (num % 2 === 0) return false;
+            
+            for (let i = 3; i <= Math.sqrt(num); i += 2) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function getFirstPrimes(n) {
+            const primes = [];
+            let num = 2;
+            
+            while (primes.length < n) {
+                if (isPrime(num)) {
+                    primes.push(num);
+                }
+                num++;
+            }
+            return primes;
+        }
+
+        function getPrimesInRange(start, end) {
+            const primes = [];
+            const lower = Math.min(start, end);
+            const upper = Math.max(start, end);
+            
+            for (let num = lower; num <= upper; num++) {
+                if (isPrime(num)) {
+                    primes.push(num);
+                }
+            }
+            return primes;
+        }
+
+        function calculatePrimes() {
+            const input1 = parseInt(document.getElementById('input1').value);
+            const input2 = document.getElementById('input2').value;
+            
+            let primes;
+            if (!input2) {
+                primes = getFirstPrimes(input1);
+            } else {
+                primes = getPrimesInRange(input1, parseInt(input2));
+            }
+            
+            document.getElementById('primesResult').textContent = primes.join(', ');
+        }
+    </script>
+</body>
+</html>
