@@ -1,3 +1,4 @@
+
 let produtos = JSON.parse(localStorage.getItem("produtos")) || [
   { id: 1, nome: "Mouse", preco: 59.9, quantidade: 12 },
   { id: 2, nome: "Teclado", preco: 99.9, quantidade: 5 },
@@ -11,12 +12,16 @@ let produtos = JSON.parse(localStorage.getItem("produtos")) || [
   { id: 10, nome: "Suporte de Notebook", preco: 89.9, quantidade: 0 }
 ];
 
+
 function atualizarLocalStorage() {
   localStorage.setItem("produtos", JSON.stringify(produtos));
 }
 
+
 function listarProdutos() {
   const lista = document.getElementById("lista");
+  if (!lista) return;
+
   lista.innerHTML = "";
   produtos.forEach(p => {
     const item = document.createElement("li");
@@ -27,7 +32,7 @@ function listarProdutos() {
 
 function mostrarNomes() {
   const nomes = produtos.map(p => p.nome);
-  alert("Nomes dos produtos: " + nomes.join(", "));
+  alert("Nomes dos produtos:\n" + nomes.join("\n"));
 }
 
 function calcularTotal() {
@@ -37,39 +42,64 @@ function calcularTotal() {
 
 function verificarEsgotados() {
   const esgotado = produtos.some(p => p.quantidade === 0);
-  alert(esgotado ? "Há produtos esgotados!" : "Todos os produtos têm estoque.");
+  alert(esgotado ? "⚠️ Há produtos esgotados!" : "✅ Todos os produtos têm estoque.");
 }
 
 function verificarPrecos() {
   const todosCaros = produtos.every(p => p.preco > 10);
-  alert(todosCaros ? "Todos os produtos têm preço justo." : "Há produtos com preço muito baixo.");
+  alert(todosCaros ? "✅ Todos os produtos têm preço justo." : "⚠️ Há produtos com preço muito baixo.");
 }
 
 function buscarProduto() {
   const nome = prompt("Digite o nome do produto:");
-  const produto = produtos.find(p => p.nome.toLowerCase() === nome.toLowerCase());
+  if (!nome || nome.trim() === "") {
+    alert("Busca cancelada ou nome vazio.");
+    return;
+  }
+
+  const nomeBusca = nome.trim().toLowerCase();
+  const produto = produtos.find(p => p.nome.toLowerCase() === nomeBusca);
+
   if (produto) {
-    alert(`Produto encontrado: ${produto.nome}, R$${produto.preco.toFixed(2)}, Quantidade: ${produto.quantidade}`);
+    alert(`🔍 Produto encontrado:\nNome: ${produto.nome}\nPreço: R$${produto.preco.toFixed(2)}\nQuantidade: ${produto.quantidade}`);
   } else {
-    alert("Produto não encontrado.");
+    alert("❌ Produto não encontrado.");
   }
 }
-
 function adicionarProduto() {
   const nome = prompt("Nome do produto:");
   const preco = parseFloat(prompt("Preço do produto:"));
   const quantidade = parseInt(prompt("Quantidade disponível:"));
+
+  if (!nome || isNaN(preco) || isNaN(quantidade) || preco <= 0 || quantidade < 0) {
+    alert("❌ Dados inválidos. Verifique os valores informados.");
+    return;
+  }
+
   const id = produtos.length ? produtos[produtos.length - 1].id + 1 : 1;
   produtos.push({ id, nome, preco, quantidade });
+
   atualizarLocalStorage();
   listarProdutos();
+  alert("✅ Produto adicionado com sucesso.");
 }
 
 function aplicarDesconto() {
   const percentual = parseFloat(prompt("Digite o percentual de desconto (ex: 10 para 10%):"));
-  produtos = produtos.map(p => ({ ...p, preco: p.preco * (1 - percentual / 100) }));
+
+  if (isNaN(percentual) || percentual <= 0 || percentual > 100) {
+    alert("❌ Percentual inválido.");
+    return;
+  }
+
+  produtos = produtos.map(p => ({
+    ...p,
+    preco: +(p.preco * (1 - percentual / 100)).toFixed(2)
+  }));
+
   atualizarLocalStorage();
   listarProdutos();
+  alert(`✅ Desconto de ${percentual}% aplicado com sucesso!`);
 }
 
 window.onload = () => {
