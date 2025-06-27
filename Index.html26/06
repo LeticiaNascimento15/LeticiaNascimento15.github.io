@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loja Virtual - Relatórios</title>
+  <link rel="stylesheet" href="css/estilo.css">
+<script src="js/script.js"></script>
+</head>
+<body>
+  <h1>Relatórios da Loja Virtual</h1>
+
+  <ul id="lista"></ul>
+
+  <div class="botoes">
+    <button onclick="listarProdutos()">Listar Produtos</button>
+    <button onclick="mostrarNomes()">Mostrar Nomes</button>
+    <button onclick="calcularTotal()">Calcular Total</button>
+    <button onclick="verificarEsgotados()">Verificar Esgotados</button>
+    <button onclick="verificarPrecos()">Verificar Preços</button>
+    <button onclick="buscarProduto()">Buscar Produto</button>
+    <button onclick="adicionarProduto()">Adicionar Produto</button>
+    <button onclick="aplicarDesconto()">Aplicar Desconto</button>
+  </div>
+</body>
+</html>
