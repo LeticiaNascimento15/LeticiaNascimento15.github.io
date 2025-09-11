@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cafeteria do CEFET-RJ</title>
+    <script src="cafeteria.js " defer></script>
+    <style>
+        body {
+          padding: 50px;
+          background-color: rgb(0, 0, 0);
+            
+            margin: 20;
+            padding: 20px;
+        }
+        h1 {
+          font-size: 80px;
+          font-language-override:50px;
+          color: #6d3016;
+            text-align: center;
+        }
+        .container {
+         
+            display: flex;
+            margin-top: 120px;
+        }
+        .menu-area {
+           font-size: 20px;
+       color: #ffffff;
+            flex: 3;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .menu-item {
+            border-radius: 45px; 
+          border: 0px solid #6d3016;
+            padding: 10px;
+            width: 220px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .menu-item img {
+           border-radius: 45px; 
+            max-width: 100%;
+            height: auto;
+        }
+        .menu-item:hover {
+           border-radius: 45px; 
+       border: 50px;
+            background-color: #6d3016;
+        }
+        .cart-area:hover {
+          color: #ffffff;
+        border-radius: 25px;
+            flex: 1;
+            margin-left: 20px;
+            border: 1px solid #6d3016;
+            padding: 10px;
+            height: fit-content;
+            background-color: #6d3016;
+        }
+        .cart-area h2 {
+          font-size:30px;
+          color: #ffffff;
+            margin-top: 0;
+        }
+        .cart-area ul {
+          
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .cart-area li {
+        color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .cart-total {
+          font-size:20px;
+           color: rgb(255, 255, 255);
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cafeteria do CEFET-RJ</h1>
+    <div class="container">
+        <div class="menu-area" id="menu"></div>
+        <div class="cart-area">
+            <h2>Itens Comprados</h2>
+            <ul id="cart-items"></ul>
+            <p class="cart-total">Total: R$ <span id="total">0.00</span></p>
+        </div>
+    </div>
+
+</body>
+</html>

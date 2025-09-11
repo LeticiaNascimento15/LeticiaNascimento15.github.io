@@ -1,0 +1,38 @@
+
+[
+  {
+    "nome": "Café Espresso",
+    "preco": 8.0,
+    "img": "https://upload.wikimedia.org/wikipedia/commons/2/23/Captura_de_Tela_2017-08-30_%C3%A0s_23.42.42.png"
+  },
+  {
+    "nome": "Capuccino",
+    "preco": 12.0,
+    "img": "https://www.nescafe.com/br/sites/default/files/2024-09/NES_SBU_Recipes%202024_Website_French%20Vanilla%20Cappuccino_Hero%20Banner_1066x1066.jpg"
+  },
+  {
+    "nome": "Suco de Laranja",
+    "preco": 10.0,
+    "img": "https://cardapio.primeirobar.com.br/wp-content/uploads/2022/04/laranja.jpg"
+  },
+  {
+    "nome": "Água mineral",
+    "preco": 6.0,
+    "img": "https://fontagua.com.br/wp-content/uploads/2019/02/splash_350ml.jpg"
+  },
+  {
+    "nome": "Fatia de bolo",
+    "preco": 12.0,
+    "img": "https://cdn.awsli.com.br/2500x2500/1890/1890981/produto/229837409/1bc81f334dc945a1f713c630f9f0508a-hb4jsdghc0.jpg"
+  },
+  {
+    "nome": "Sanduíche natural",
+    "preco": 15.0,
+    "img": "https://guiadacozinha.com.br/wp-content/uploads/2014/01/Sanduiche-natural-768x619.jpg"
+  },
+  {
+    "nome": "Croissant",
+    "preco": 17.0,
+    "img": "https://www.fornodeminas.com.br/wp-content/uploads/2018/06/croissant.jpg"
+  }]
+  
