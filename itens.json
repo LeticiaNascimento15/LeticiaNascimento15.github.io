@@ -1,0 +1,9 @@
+[
+  { "id": 1, "nome": "Café Espresso", "preco": 8, "img": "https://villacafe.com.br/blog/wp-content/uploads/2016/03/villa-cafe-gourmet-para-site.jpg" },
+  { "id": 2, "nome": "Capuccino", "preco": 12, "img": "https://www.nescafe.com/br/sites/default/files/2024-09/NES_SBU_Recipes%202024_Website_French%20Vanilla%20Cappuccino_Step%206_705x830.jpg" },
+  { "id": 3, "nome": "Suco de Laranja", "preco": 10, "img": "https://static.ndmais.com.br/2025/05/suco-de-laranja.jpg" },
+  { "id": 4, "nome": "Água Mineral", "preco": 6, "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtGB67c4RADkfWAy-R9l5-n9vjgtQVvT2z4g&s" },
+  { "id": 5, "nome": "Fatia de Bolo", "preco": 12, "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2bi8I7gsY_Hsha32l8xvGTNsJNL3SNfbx0w&s" },
+  { "id": 6, "nome": "Sanduíche Natural", "preco": 15, "img": "https://minhasreceitinhas.com.br/wp-content/uploads/2022/11/Sanduiche-natural-de-frango-2-1200x739.png" },
+  { "id": 7, "nome": "Croissant", "preco": 17, "img": "https://ogimg.infoglobo.com.br/in/21476861-6b9-6af/FT1086A/INFOCHPDPICT000065884626.jpg" }
+]

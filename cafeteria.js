@@ -1,48 +1,74 @@
- let cart = [];
-        let total = 0;
+let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+const produtosContainer = document.getElementById("produtos");
+const listaCarrinho = document.getElementById("lista-carrinho");
+const totalElement = document.getElementById("total");
+const contador = document.getElementById("contador");
+const limparBtn = document.getElementById("limpar");
 
 
-        fetch('cardapio.json')
-            .then(response => response.json())
-            .then(data => {
-                const menuArea = document.getElementById('menu');
-                data.forEach(item => {
-              
-                    let itemDiv = document.createElement('div');
-                    itemDiv.className = 'menu-item';
-                    itemDiv.innerHTML = `
-                        <img src="${item.img}" alt="${item.nome}">
-                        <h3>${item.nome}</h3>
-                        <p>R$ ${item.preco.toFixed(2)}</p>
-                    `;
-                
-                    itemDiv.addEventListener('click', function() {
-                        addToCart(item);
-                    });
-                    menuArea.appendChild(itemDiv);
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao carregar o cardápio:', error);
-            });
+fetch("itens.json")
+  .then(res => res.json())
+  .then(produtos => {
+    produtos.forEach(prod => {
+      const div = document.createElement("div");
+      div.classList.add("produto");
 
-       
-        function addToCart(item) {
-            cart.push(item);
-            total += item.preco;
-            updateCartDisplay();
-        }
+      div.innerHTML = `
+        <img src="${prod.img}" alt="${prod.nome}">
+        <h3>${prod.nome}</h3>
+        <p>R$ ${prod.preco.toFixed(2)}</p>
+        <button onclick="adicionarCarrinho(${prod.id}, '${prod.nome}', ${prod.preco})">Adicionar</button>
+      `;
 
-     
-        function updateCartDisplay() {
-            const cartItemsList = document.getElementById('cart-items');
-            const totalElement = document.getElementById('total');
-            cartItemsList.innerHTML = '';
-            cart.forEach((item) => {
-                let li = document.createElement('li');
-                li.textContent = item.nome + ' - R$ ' + item.preco.toFixed(2);
-                cartItemsList.appendChild(li);
-            });
-            totalElement.textContent = total.toFixed(2);
-        }
-    
+      produtosContainer.appendChild(div);
+    });
+  });
+
+
+function adicionarCarrinho(id, nome, preco) {
+  carrinho.push({ id, nome, preco });
+  salvarCarrinho();
+  renderizarCarrinho();
+}
+
+
+function removerCarrinho(index) {
+  carrinho.splice(index, 1);
+  salvarCarrinho();
+  renderizarCarrinho();
+}
+
+
+limparBtn.addEventListener("click", () => {
+  carrinho = [];
+  salvarCarrinho();
+  renderizarCarrinho();
+});
+
+
+function salvarCarrinho() {
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
+
+
+function renderizarCarrinho() {
+  listaCarrinho.innerHTML = "";
+  let total = 0;
+
+  carrinho.forEach((item, index) => {
+    total += item.preco;
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${item.nome} - R$ ${item.preco.toFixed(2)}
+      <button onclick="removerCarrinho(${index})">X</button>
+    `;
+    listaCarrinho.appendChild(li);
+  });
+
+  totalElement.innerText = total.toFixed(2);
+  contador.innerText = carrinho.length;
+}
+
+
+renderizarCarrinho();

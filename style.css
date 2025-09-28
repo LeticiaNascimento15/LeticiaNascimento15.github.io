@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000000;
+  color: #222;
+}
+
+
+header {
+  background: linear-gradient(90deg, #35210a, #523602);
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.carrinho-icon {
+  font-size: 1.2rem;
+  background: #523602;
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+
+.produtos {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.produto {
+  background: #35210a;
+  border: 2px solid #35210a;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  transition: 0.3s;
+  color: white;
+}
+
+.produto:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+}
+
+.produto img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.produto button {
+  margin-top: 10px;
+  background: #35210a;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.produto button:hover {
+  background: #000000;
+}
+
+
+.carrinho {
+  flex: 1;
+  background: #35210a;
+  border: 2px solid #35210a;
+  border-radius: 12px;
+  padding: 15px;
+  
+}
+
+.carrinho h2 {
+  margin-top: 0;
+  color: #ffffff;
+}
+
+#lista-carrinho {
+  list-style: none;
+  padding: 0;
+}
+
+#lista-carrinho li {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  padding: 6px;
+  background: #35210a;
+  border-radius: 6px;
+  color: white;
+}
+
+#lista-carrinho button {
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#lista-carrinho button:hover {
+  background: darkred;
+}
+
+#limpar{
+  margin-top: 10px;
+  width: 100%;
+  background: #35210a;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#limpar:hover {
+  background: #000000;
+
+}
+
+#total{
+    color: #fff;
+}
+
+
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #35210a;
+  color: #fff;
+  margin-top: 20px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  };
+}}
