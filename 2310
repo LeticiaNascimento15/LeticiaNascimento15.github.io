@@ -1,0 +1,131 @@
+// script.js
+// Sistema de Pedidos Online - Lanchonete da Web
+
+// Array para armazenar os pedidos (escopo local, não global)
+const pedidos = [];
+
+// Função para cadastrar novo pedido
+const adicionarPedido = () => {
+  const nome = document.getElementById("cliente").value.trim();
+  const item = document.getElementById("item").value.trim();
+  const valor = parseFloat(document.getElementById("valor").value);
+
+  // Validação
+  if (!nome || !item || isNaN(valor) || valor <= 0) {
+    alert("Preencha todos os campos corretamente!");
+    return;
+  }
+
+  // Cria o objeto do pedido usando shorthand
+  const pedido = { nome, item, valor };
+
+  pedidos.push(pedido);
+
+  limparCampos();
+  exibirMensagem(`✅ Pedido de ${nome} adicionado com sucesso!`);
+};
+
+// Função para listar pedidos
+const listarPedidos = () => {
+  if (pedidos.length === 0) {
+    exibirMensagem("Nenhum pedido cadastrado ainda.");
+    return;
+  }
+
+  const lista = pedidos
+    .map(
+      (p, i) => `${i + 1}. Cliente: ${p.nome} | Item: ${p.item} | Valor: R$ ${p.valor.toFixed(2)}`
+    )
+    .join("<br>");
+
+  exibirMensagem(lista);
+};
+
+// Função para calcular total de vendas
+const calcularTotal = () => {
+  if (pedidos.length === 0) {
+    exibirMensagem("Nenhum pedido para calcular.");
+    return;
+  }
+
+  const total = pedidos.reduce((soma, p) => soma + p.valor, 0);
+  exibirMensagem(`💰 Total de vendas: R$ ${total.toFixed(2)}`);
+};
+
+// Função para buscar pedido por nome do cliente
+const buscarPedidoPorCliente = () => {
+  const nomeBusca = prompt("Digite o nome do cliente:").trim().toLowerCase();
+
+  const encontrados = pedidos.filter(p => p.nome.toLowerCase().includes(nomeBusca));
+
+  if (encontrados.length === 0) {
+    exibirMensagem(`Nenhum pedido encontrado para "${nomeBusca}".`);
+    return;
+  }
+
+  const lista = encontrados
+    .map(p => `Cliente: ${p.nome} | Item: ${p.item} | Valor: R$ ${p.valor.toFixed(2)}`)
+    .join("<br>");
+
+  exibirMensagem(lista);
+};
+
+// Função assíncrona para simular envio de dados (fetch API)
+const enviarDadosServidor = async () => {
+  try {
+    const resposta = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pedidos),
+    });
+
+    const dados = await resposta.json();
+    console.log("Dados enviados com sucesso:", dados);
+    exibirMensagem("🚀 Dados enviados com sucesso ao servidor!");
+  } catch (erro) {
+    console.error("Erro ao enviar:", erro);
+    exibirMensagem("❌ Erro ao enviar dados ao servidor.");
+  }
+};
+
+// Funções auxiliares
+const exibirMensagem = msg => {
+  document.getElementById("saida").innerHTML = msg;
+};
+
+const limparCampos = () => {
+  document.getElementById("cliente").value = "";
+  document.getElementById("item").value = "";
+  document.getElementById("valor").value = "";
+};
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lanchonete da Web</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🍔 Lanchonete da Web</h1>
+
+    <input type="text" id="cliente" placeholder="Nome do cliente">
+    <input type="text" id="item" placeholder="Item do pedido">
+    <input type="number" id="valor" placeholder="Valor (R$)">
+    <button onclick="adicionarPedido()">Adicionar Pedido</button>
+
+    <button onclick="listarPedidos()">Listar Pedidos</button>
+    <button onclick="calcularTotal()">Calcular Total</button>
+    <button onclick="buscarPedidoPorCliente()">Buscar Pedido por Cliente</button>
+    <button onclick="enviarDadosServidor()">Enviar Dados ao Servidor</button>
+
+    <div id="saida"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
